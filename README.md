@@ -24,7 +24,7 @@
 > * Twitter: https://twitter.com/_uncleyeung
 > * Tumblr: https://www.tumblr.com/blog/uncleyeung
 # 支付业务签名之个人答疑解惑
-###先上代码再说，前请提要
+### 先上代码再说，前请提要
 ```java
 class PaySignature{
     public static void main(String[] args) throws InvalidKeySpecException, NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException, SignatureException {

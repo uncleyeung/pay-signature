@@ -48,7 +48,7 @@ class PaySignature{
 }
 ```
 -----
-####1.什么是非对称性加密？什么是对称加密？
+#### 1.什么是非对称性加密？什么是对称加密？
  + 1976年以前，所有的加密方法都是同一种模式：
    
  　　（1）甲方选择某一种加密规则，对信息进行加密；
@@ -72,7 +72,7 @@ class PaySignature{
    如果公钥加密的信息只有私钥解得开，那么只要私钥不泄漏，通信就是安全的。
  + [RSA算法原理详见](http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html)
 -----
-####2.什么是加签验签？来自项目实践。
+#### 2.什么是加签验签？来自项目实践。
 + 一般出现在外部a调用内部b服务，怎么验证其合法性？其中一个就是公私钥解决方法
 
 + a生成私钥公钥，将公钥交给b，当a调用b的服务时，用请求的dto生成待加签字符串，使用私钥对该字符串加签，生成数字摘要一并且访问b服务
@@ -88,7 +88,7 @@ class PaySignature{
 + 为什么要这么做？双方都是服务器你请求的数据我不信，我要验证，我响应的数据你也不信，也要验证。
 
 -----
-####2.扯了这么多怎么生成公私钥？举例其中一种（本人linux自带支持openssl，win[自行搜索](http://www.google.com)）
+#### 3.扯了这么多怎么生成公私钥？举例其中一种（本人linux自带支持openssl，win[自行搜索](http://www.google.com)）
 + 生成私钥：openssl genrsa -out rsa_private_key.pem 1024
 
 + 根据私钥生成公钥：openssl rsa -in rsa_private_key.pem -pubout -out rsa_public_key.pem
@@ -102,7 +102,7 @@ class PaySignature{
 + [参见](https://www.jianshu.com/p/a025e6fb0c63)
 
 -----
-####3.可忽略
+#### 4.可忽略
 ##### 验证签名规则：
 + BaseRequestDTO 转换成 map 
 + 取出不是sign/signData/ipAddress/class/signType key（BaseRequestDTO的成员变量名）封装到LinkedList

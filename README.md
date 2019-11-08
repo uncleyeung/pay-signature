@@ -31,18 +31,41 @@ class PaySignature{
     
                 //待签名字符串
                 String signStr = "test";
-                //私钥-》Pkcs8
-                String privatePkcs8Key = "MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAMKQxUl7daDCLeeS6UvbnyGPUXoSimKLs8bQxR2kWHalU+Foa5QdvLB9gz33vA3eSfNOMoe0tMREbiU3b7oBU2PaRh1Gm2CuNZRNlwhBT1E/0FKbq4spEJCQIgEK2oSou1FrtqteZxOWwoBZS3ty22caQGMmVO3cxm2MQMZpxTYJAgMBAAECgYEAqrkhhAMDChaY9RQiBeAmV+pMEhNmvmXbT98st3/X5/PWEHnxu7wEL9FScfOJXZnpxcad7BoSbA2noJxuOwaixfm87HQphUvVb/e1ewSiK4Iqq0OXIqTN5rtj9r2rvMgZT0LgQombq8FcRbNOZkc/1NlA2Y6F+aP5zNED3UKSpAECQQDfUju/M0MQaqZtr6137hsxk0bdAqPa4aIxTIZUfPblK+GDceriWp6M2fEAbQRco0p0PKTVJA7JywZhjPH7rVvJAkEA3wlUFZpy+fCXb2TIYyCpJgugIwtGwBUT4jo610LuNyKaxsRikB/8NvfwuchDDEF6VZdk5N12oyPJDmeEct2oQQJAPl16rfSk3+rIu4z6BqoKEhgtC/92vuOQJfBW+zVCxdExU0H29GuWJ4OdmB7Zvv0jB77/0T4WmygFiiyQT1akcQJBAI2rQzmlrTqNU+NxxMcSS97aq5EW7I291a9xBUcOQHnNBTsUKvcZGf9gZgvb5Jq4TJhpXbDx6xWc+Wyo3DyKBwECQQCH6Yl/g91Ia2A0OWXInNj+apg3AlEOXFduUwldby7iZxUfyNqG3hwP5jINFrw2jXy8vnVEsSLal3Usbq2lcjF7";
-                //私钥
-                String privateKey ="MIICXgIBAAKBgQDCkMVJe3Wgwi3nkulL258hj1F6Eopii7PG0MUdpFh2pVPhaGuUHbywfYM997wN3knzTjKHtLTERG4lN2+6AVNj2kYdRptgrjWUTZcIQU9RP9BSm6uLKRCQkCIBCtqEqLtRa7arXmcTlsKAWUt7cttnGkBjJlTt3MZtjEDGacU2CQIDAQABAoGBAKq5IYQDAwoWmPUUIgXgJlfqTBITZr5l20/fLLd/1+fz1hB58bu8BC/RUnHziV2Z6cXGnewaEmwNp6CcbjsGosX5vOx0KYVL1W/3tXsEoiuCKqtDlyKkzea7Y/a9q7zIGU9C4EKJm6vBXEWzTmZHP9TZQNmOhfmj+czRA91CkqQBAkEA31I7vzNDEGqmba+td+4bMZNG3QKj2uGiMUyGVHz25Svhg3Hq4lqejNnxAG0EXKNKdDyk1SQOycsGYYzx+61byQJBAN8JVBWacvnwl29kyGMgqSYLoCMLRsAVE+I6OtdC7jcimsbEYpAf/Db38LnIQwxBelWXZOTddqMjyQ5nhHLdqEECQD5deq30pN/qyLuM+gaqChIYLQv/dr7jkCXwVvs1QsXRMVNB9vRrlieDnZge2b79Iwe+/9E+FpsoBYoskE9WpHECQQCNq0M5pa06jVPjccTHEkve2quRFuyNvdWvcQVHDkB5zQU7FCr3GRn/YGYL2+SauEyYaV2w8esVnPlsqNw8igcBAkEAh+mJf4PdSGtgNDllyJzY/mqYNwJRDlxXblMJXW8u4mcVH8jaht4cD+YyDRa8No18vL51RLEi2pd1LG6tpXIxew==";
-                //获得数字摘要（加签）
-                String sign = RSA.sign(signStr, privatePkcs8Key, Constant.DEFAULT_CHARSET);
-                //公钥
-                String publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCkMVJe3Wgwi3nkulL258hj1F6Eopii7PG0MUdpFh2pVPhaGuUHbywfYM997wN3knzTjKHtLTERG4lN2+6AVNj2kYdRptgrjWUTZcIQU9RP9BSm6uLKRCQkCIBCtqEqLtRa7arXmcTlsKAWUt7cttnGkBjJlTt3MZtjEDGacU2CQIDAQAB";
-                //验签
-                boolean verify = RSA.verify(signStr, sign, publicKey, Constant.DEFAULT_CHARSET);
+                
+                //a私钥-》Pkcs8
+                String aPrivatePkcs8Key = "MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAMKQxUl7daDCLeeS6UvbnyGPUXoSimKLs8bQxR2kWHalU+Foa5QdvLB9gz33vA3eSfNOMoe0tMREbiU3b7oBU2PaRh1Gm2CuNZRNlwhBT1E/0FKbq4spEJCQIgEK2oSou1FrtqteZxOWwoBZS3ty22caQGMmVO3cxm2MQMZpxTYJAgMBAAECgYEAqrkhhAMDChaY9RQiBeAmV+pMEhNmvmXbT98st3/X5/PWEHnxu7wEL9FScfOJXZnpxcad7BoSbA2noJxuOwaixfm87HQphUvVb/e1ewSiK4Iqq0OXIqTN5rtj9r2rvMgZT0LgQombq8FcRbNOZkc/1NlA2Y6F+aP5zNED3UKSpAECQQDfUju/M0MQaqZtr6137hsxk0bdAqPa4aIxTIZUfPblK+GDceriWp6M2fEAbQRco0p0PKTVJA7JywZhjPH7rVvJAkEA3wlUFZpy+fCXb2TIYyCpJgugIwtGwBUT4jo610LuNyKaxsRikB/8NvfwuchDDEF6VZdk5N12oyPJDmeEct2oQQJAPl16rfSk3+rIu4z6BqoKEhgtC/92vuOQJfBW+zVCxdExU0H29GuWJ4OdmB7Zvv0jB77/0T4WmygFiiyQT1akcQJBAI2rQzmlrTqNU+NxxMcSS97aq5EW7I291a9xBUcOQHnNBTsUKvcZGf9gZgvb5Jq4TJhpXbDx6xWc+Wyo3DyKBwECQQCH6Yl/g91Ia2A0OWXInNj+apg3AlEOXFduUwldby7iZxUfyNqG3hwP5jINFrw2jXy8vnVEsSLal3Usbq2lcjF7";
+                //a私钥
+                String aPrivateKey = "MIICXgIBAAKBgQDCkMVJe3Wgwi3nkulL258hj1F6Eopii7PG0MUdpFh2pVPhaGuUHbywfYM997wN3knzTjKHtLTERG4lN2+6AVNj2kYdRptgrjWUTZcIQU9RP9BSm6uLKRCQkCIBCtqEqLtRa7arXmcTlsKAWUt7cttnGkBjJlTt3MZtjEDGacU2CQIDAQABAoGBAKq5IYQDAwoWmPUUIgXgJlfqTBITZr5l20/fLLd/1+fz1hB58bu8BC/RUnHziV2Z6cXGnewaEmwNp6CcbjsGosX5vOx0KYVL1W/3tXsEoiuCKqtDlyKkzea7Y/a9q7zIGU9C4EKJm6vBXEWzTmZHP9TZQNmOhfmj+czRA91CkqQBAkEA31I7vzNDEGqmba+td+4bMZNG3QKj2uGiMUyGVHz25Svhg3Hq4lqejNnxAG0EXKNKdDyk1SQOycsGYYzx+61byQJBAN8JVBWacvnwl29kyGMgqSYLoCMLRsAVE+I6OtdC7jcimsbEYpAf/Db38LnIQwxBelWXZOTddqMjyQ5nhHLdqEECQD5deq30pN/qyLuM+gaqChIYLQv/dr7jkCXwVvs1QsXRMVNB9vRrlieDnZge2b79Iwe+/9E+FpsoBYoskE9WpHECQQCNq0M5pa06jVPjccTHEkve2quRFuyNvdWvcQVHDkB5zQU7FCr3GRn/YGYL2+SauEyYaV2w8esVnPlsqNw8igcBAkEAh+mJf4PdSGtgNDllyJzY/mqYNwJRDlxXblMJXW8u4mcVH8jaht4cD+YyDRa8No18vL51RLEi2pd1LG6tpXIxew==";
+                //a公钥
+                String aPublicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCkMVJe3Wgwi3nkulL258hj1F6Eopii7PG0MUdpFh2pVPhaGuUHbywfYM997wN3knzTjKHtLTERG4lN2+6AVNj2kYdRptgrjWUTZcIQU9RP9BSm6uLKRCQkCIBCtqEqLtRa7arXmcTlsKAWUt7cttnGkBjJlTt3MZtjEDGacU2CQIDAQAB";
+                
+                //b私钥-》Pkcs8
+                String bPrivatePkcs8Key = "MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAK36wuVnjVRFhStfNSMU6wklOksHOLiCgWwbnh3+pdXblYZnof+Bi9/JyM1Lh60wBt3lzUNlMmtQCd62q0Pn+OY0ERS0kpcR5hUj63EAUvWpIfoRPxNZq1d5laHkBZ20dEQbhtClYxdW8Tzrn/aV7aDZGRuerk36b+O9w0FimhQTAgMBAAECgYApDJyFkgw3kPudwyX/dAUMsFrzru2EI060GkQRYa7xKZE7GCKR7Zf6IlsdjS+i/kzweDMZLrxZs5XQlZsNN6NzEVdNDfXGBybBAIU4cqhY5Nz9AgHLGfrxa4Hiw+UMuhFG9GcS6LWCTYQXSkNdbMyGSc/6rZmAUR6kZRkWcUcoeQJBAOfwGJdzZSXbhA/8j1vq5fqSDQZzbx79ZGcMu+WVh4vOhJ1mTnebqWVO0t+j/JOm6Zlg9xeozUhVSGfCOPjzQv0CQQDAB2Ib2ZQl369ews+QwiGkKs5hlV7Mb0edWUvhiOSny3Yfk8OHDoTsNta+zrw0NXrdaE2gIil0J0Npx7ETWohPAkBWS77amtTHgSVhzVaJnJx03mJ6Q/jUTvNMZDCE+12zZuNwrOAFIKWmS+2pyBnx1eiUaL+GzgeTIigOcvU/q0MBAkAfjdcIPoOCibQWfSqAXfYLNOF+1X2jWDHLYE4AvG7eR6ecXrqFadRbwFMfPXddmOAcm7QNuS9Yn88LBb5KMNkvAkBqLO8Tzu8z01VwJ13lj1ghWPtkJPNKuS4O31bhS6Y14pCviKvxoo6PIHxGoYzgEC5hBWguYX+D1+XdkNqHtoqC";
+                //b私钥
+                String bPrivateKey = "MIICWwIBAAKBgQCt+sLlZ41URYUrXzUjFOsJJTpLBzi4goFsG54d/qXV25WGZ6H/gYvfycjNS4etMAbd5c1DZTJrUAnetqtD5/jmNBEUtJKXEeYVI+txAFL1qSH6ET8TWatXeZWh5AWdtHREG4bQpWMXVvE865/2le2g2Rkbnq5N+m/jvcNBYpoUEwIDAQABAoGAKQychZIMN5D7ncMl/3QFDLBa867thCNOtBpEEWGu8SmROxgike2X+iJbHY0vov5M8HgzGS68WbOV0JWbDTejcxFXTQ31xgcmwQCFOHKoWOTc/QIByxn68WuB4sPlDLoRRvRnEui1gk2EF0pDXWzMhknP+q2ZgFEepGUZFnFHKHkCQQDn8BiXc2Ul24QP/I9b6uX6kg0Gc28e/WRnDLvllYeLzoSdZk53m6llTtLfo/yTpumZYPcXqM1IVUhnwjj480L9AkEAwAdiG9mUJd+vXsLPkMIhpCrOYZVezG9HnVlL4Yjkp8t2H5PDhw6E7DbWvs68NDV63WhNoCIpdCdDacexE1qITwJAVku+2prUx4ElYc1WiZycdN5iekP41E7zTGQwhPtds2bjcKzgBSClpkvtqcgZ8dXolGi/hs4HkyIoDnL1P6tDAQJAH43XCD6Dgom0Fn0qgF32CzThftV9o1gxy2BOALxu3kennF66hWnUW8BTHz13XZjgHJu0DbkvWJ/PCwW+SjDZLwJAaizvE87vM9NVcCdd5Y9YIVj7ZCTzSrkuDt9W4UumNeKQr4ir8aKOjyB8RqGM4BAuYQVoLmF/g9fl3ZDah7aKgg==";
+                //b公钥
+                String bPublicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCt+sLlZ41URYUrXzUjFOsJJTpLBzi4goFsG54d/qXV25WGZ6H/gYvfycjNS4etMAbd5c1DZTJrUAnetqtD5/jmNBEUtJKXEeYVI+txAFL1qSH6ET8TWatXeZWh5AWdtHREG4bQpWMXVvE865/2le2g2Rkbnq5N+m/jvcNBYpoUEwIDAQAB";
+
+                
+                //使用a私钥获得数字摘要（加签）
+                String sign = RSA.sign(signStr, aPrivatePkcs8Key, Constant.DEFAULT_CHARSET);
+                //使用b公钥加密，生成加密后传递的数字摘要（加密）
+                String encryptSign = RSA.encrypt(sign, bPublicKey, Constant.DEFAULT_CHARSET);
+                
+                
+                //使用b私钥，解密加密后的数字摘要（解密）
+                String decryptSign = RSA.decrypt(encryptSign, bPrivatePkcs8Key, Constant.DEFAULT_CHARSET);
+                //使用a公钥，（验签）
+                boolean verify = RSA.verify(signStr, decryptSign, aPublicKey, Constant.DEFAULT_CHARSET);
                 System.out.println("verify = " + verify);
                 //输出结果为true
+                /*
+                甲方生成 公钥a/私钥a 给乙方公钥a
+                乙方生成 公钥b/私钥b 给甲方公钥b
+                
+                甲方使用私钥a（加签），得到加密前数字摘要，使用公钥b（加密）数字摘要，得到加密后数字摘要
+                乙方使用私钥b（解密），得到解密后数字摘要，使用私钥a和解密后数字摘要（验签）
+                * */
                 
     }
 }
